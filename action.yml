@@ -1,0 +1,25 @@
+name: Dependabot auto merge
+inputs:
+  github-token:
+    description: GitHub token
+    default: ${{ github.token }}
+    required: false
+runs:
+  using: composite
+  steps:
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+      uses: dependabot/fetch-metadata@v2
+      with:
+        github-token: ${{ inputs.github-token }}
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+      run: gh pr review --approve "$PR_URL"
+      shell: bash
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+      run: gh pr merge --squash --auto "$PR_URL" || gh pr merge --merge --auto "$PR_URL" || gh pr merge --rebase --auto "$PR_URL"
+      shell: bash
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
