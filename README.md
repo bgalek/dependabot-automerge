@@ -1,6 +1,8 @@
 # Dependabot Auto Merge
 This GitHub Action automatically approves and merges pull requests created by Dependabot.
 
+> Dependabot will wait until all your status checks pass before merging. This is a function of Dependabot itself, and not this Action.
+
 ## Usage
 
 Add permissions
