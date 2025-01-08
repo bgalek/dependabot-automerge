@@ -1,4 +1,4 @@
-name: Dependabot auto merge
+name: Simple Dependabot auto merge
 description: This GitHub Action automatically approves and merges pull requests created by Dependabot. Supports all merge options!
 branding:
   icon: git-merge
