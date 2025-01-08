@@ -1,4 +1,7 @@
 name: Dependabot auto merge
+branding:
+  icon: git-merge
+  color: green
 inputs:
   github-token:
     description: GitHub token
